@@ -44,3 +44,33 @@ class Game:
             sentences = f.split('\n')
             sentence = random.choice(sentences)
             return sentence
+    def show_results(self, screen):
+        if(not self.end):
+            # clculate time
+            self.ttal_time = time.time() - self.time_start
+
+            # claculate accuracy
+            count = 0
+            for i,c in enumerate(self.world):
+                try:
+                    if self.input_text[i] == c:
+                        count += 1
+                except:
+                    pass
+            self.accuracy = count/len(self.world)*100
+
+            # calculate words per minute
+            self.wpa = len(self.input_text)*60/(5*self.total_time)
+            self.end = True
+            print(self.total_time)
+
+            self.results = 'Time: '+str(round(self.total_time)) +'secs Accuracy: '+ str(round(self.accuracy))+'%'+' wpa : '+str(round(self.wpa))
+
+            # draw icon image
+        self.time_img = pygame.image.load('icon.png')
+        self.time_img = pygame.transform.scale(self.time_img, (150,150))
+        #screen.blit(self.time_img, (80,320))
+        screen.blit(self.time_img, (self.w/2-75,self.h-140))
+        self.draw_text(screen,"Reset", self.h - 70, 26, (100,100,100))
+        print(self.results)
+        pygame.display.update()
