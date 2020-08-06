@@ -119,3 +119,29 @@ class Game:
                                 pass
             pygame.display.update()
         clock.tick(60)
+    
+    def reset_game(self):
+        self.screen.blit(self.open_img, (0,0))
+        pygame.display.update()
+        time.sleep(1)
+        self.reset=False
+        self.end = False
+        self.input_text=''
+        self.word = ''
+        self.time_start = 0
+        self.total_time = 0
+        self.wpm = 0
+        # Get random sentence
+        self.word = self.get_sentence()
+        if (not self.word): self.reset_game()
+        #drawing heading
+        self.screen.fill((0,0,0))
+        self.screen.blit(self.bg,(0,0))
+        msg = "Typing Speed Test"
+        self.draw_text(self.screen, msg,80, 80,self.HEAD_C)
+        # draw the rectangle for input box
+        pygame.draw.rect(self.screen,(255,192,25), (50,250,650,50), 2)
+        # draw the sentence string
+        self.draw_text(self.screen, self.word,200, 28,self.TEXT_C)
+        pygame.display.update()
+    
