@@ -144,4 +144,7 @@ class Game:
         # draw the sentence string
         self.draw_text(self.screen, self.word,200, 28,self.TEXT_C)
         pygame.display.update()
+
+if __name__ == "__main__":
+    Game().run()
     
