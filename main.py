@@ -6,7 +6,6 @@ import random
 
 class Game:
     def __init__(self):
-
         self.w = 750
         self.h = 500
         self.reset = True
